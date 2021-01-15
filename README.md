@@ -1,5 +1,5 @@
 **Проект «Сервис Mesto»**
-https://anara-s.github.io/russian-travel/index.html
+https://anara-s.github.io/mesto/
 
 **Описание проекта:**
 Интерактивная страница, куда можно добавлять фотографии, удалять их и ставить лайки.
