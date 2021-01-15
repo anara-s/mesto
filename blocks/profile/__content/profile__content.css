@@ -1,5 +1,4 @@
-.profile__content {
-    max-width: 350px;
+.profile__content {    
     margin: 0 0 0 30px;
     display: grid;
     max-width: 336px;
