@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mesto</title>
+        <link rel="stylesheet" href="pages/index.css">
+    </head>
+    <body class="page">
+        <header class="header page__header">
+            <a class="header__logo" href="#" target="_blank"></a>           
+        </header>
+        <main>
+            <section class="profile page__profile">
+                <img src="images/avatar.jpg" alt="Изображение автора" class="profile__image">
+                <div class="profile__content">
+                    <p class="profile__author">Жак-Ив Кусто</p>
+                    <span class="profile__edit"></span>
+                    <p class="profile__description">Исследователь океана</p>                    
+                </div>
+                <span class="profile__add"></span>
+            </section>
+            <section class="elements page__elements">
+                <article class="elements__card">
+                    <img src="images/karach-cherk.png" alt="Историческое здание" class="elements__image">
+                    <div class="elements__content">
+                        <h2 class="elements__title">Карачаевск</h2>
+                        <span class="elements__like"></span>
+                    </div>
+                </article>
+                <article class="elements__card">
+                    <img src="images/elbrus.png" alt="Гора на горизонте" class="elements__image">                    
+                    <div class="elements__content">
+                        <h2 class="elements__title">Гора Эльбрус</h2>
+                        <span class="elements__like"></span>
+                    </div>
+                </article>
+                <article class="elements__card">
+                    <img src="images/dombai.png" alt="Вершина горы" class="elements__image">                    
+                    <div class="elements__content">
+                        <h2 class="elements__title">Домбай</h2>
+                        <span class="elements__like"></span>
+                    </div>
+                </article>
+                <article class="elements__card">
+                    <img src="images/elbrus.png" alt="Гора на горизонте" class="elements__image">                    
+                    <div class="elements__content">
+                        <h2 class="elements__title">Гора Эльбрус</h2>
+                        <span class="elements__like"></span>
+                    </div>
+                </article>
+                <article class="elements__card">
+                    <img src="images/dombai.png" alt="Вершина горы" class="elements__image">                    
+                    <div class="elements__content">
+                        <h2 class="elements__title">Домбай</h2>
+                        <span class="elements__like"></span>
+                    </div>
+                </article>
+                <article class="elements__card">
+                    <img src="images/karach-cherk.png" alt="Историческое здание" class="elements__image">                    
+                    <div class="elements__content">
+                        <h2 class="elements__title">Карачаево-Черкессия</h2>
+                        <span class="elements__like"></span>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer class="footer page__footer">
+            <p class="footer__copyright">© 2020 Mesto Russia</p>
+        </footer>
+        <section class="popup">
+            <form class="popup__container">
+                <span class="popup__close"></span>
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <input class="popup__author" id="author" type="text" value="Жак-Ив Кусто">
+                <input class="popup__description" id="description" type="text" value="Исследователь океана">
+                <button class="popup__button" type="submit">Сохранить</button>
+            </form>
+        </section>
+        <script src="scripts/index.js"></script>
+    </body>
+</html>
