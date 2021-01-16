@@ -5,6 +5,9 @@
     margin: 15px 0 0 18px;
     transition: opacity 1s ease;
     cursor: pointer;
+    border: none;
+    background-color: transparent;
+    outline: inherit;
 }
 
 .profile__edit:hover {

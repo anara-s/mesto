@@ -14,53 +14,53 @@
             <section class="profile page__profile">
                 <img src="images/avatar.jpg" alt="Изображение автора" class="profile__image">
                 <div class="profile__content">
-                    <p class="profile__author">Жак-Ив Кусто</p>
-                    <span class="profile__edit"></span>
+                    <h1 class="profile__author">Жак-Ив Кусто</h1>
+                    <button type="button" class="profile__edit"></button>
                     <p class="profile__description">Исследователь океана</p>                    
                 </div>
-                <span class="profile__add"></span>
+                <button type="button" class="profile__add"></button>
             </section>
             <section class="elements page__elements">
                 <article class="elements__card">
                     <img src="images/karach-cherk.png" alt="Историческое здание" class="elements__image">
                     <div class="elements__content">
                         <h2 class="elements__title">Карачаевск</h2>
-                        <span class="elements__like"></span>
+                        <button type="button" class="elements__like"></button>
                     </div>
                 </article>
                 <article class="elements__card">
                     <img src="images/elbrus.png" alt="Гора на горизонте" class="elements__image">                    
                     <div class="elements__content">
                         <h2 class="elements__title">Гора Эльбрус</h2>
-                        <span class="elements__like"></span>
+                        <button type="button" class="elements__like"></button>
                     </div>
                 </article>
                 <article class="elements__card">
                     <img src="images/dombai.png" alt="Вершина горы" class="elements__image">                    
                     <div class="elements__content">
                         <h2 class="elements__title">Домбай</h2>
-                        <span class="elements__like"></span>
+                        <button type="button" class="elements__like"></button>
                     </div>
                 </article>
                 <article class="elements__card">
                     <img src="images/elbrus.png" alt="Гора на горизонте" class="elements__image">                    
                     <div class="elements__content">
                         <h2 class="elements__title">Гора Эльбрус</h2>
-                        <span class="elements__like"></span>
+                        <button type="button" class="elements__like"></button>
                     </div>
                 </article>
                 <article class="elements__card">
                     <img src="images/dombai.png" alt="Вершина горы" class="elements__image">                    
                     <div class="elements__content">
                         <h2 class="elements__title">Домбай</h2>
-                        <span class="elements__like"></span>
+                        <button type="button" class="elements__like"></button>
                     </div>
                 </article>
                 <article class="elements__card">
                     <img src="images/karach-cherk.png" alt="Историческое здание" class="elements__image">                    
                     <div class="elements__content">
                         <h2 class="elements__title">Карачаево-Черкессия</h2>
-                        <span class="elements__like"></span>
+                        <button type="button" class="elements__like"></button>
                     </div>
                 </article>
             </section>
@@ -69,11 +69,11 @@
             <p class="footer__copyright">© 2020 Mesto Russia</p>
         </footer>
         <section class="popup">
-            <form class="popup__container">
-                <span class="popup__close"></span>
+            <form class="popup__container" name="edit-profile">
+                <button type="button" class="popup__close"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <input class="popup__author" id="author" type="text" value="Жак-Ив Кусто">
-                <input class="popup__description" id="description" type="text" value="Исследователь океана">
+                <input class="popup__input popup__input_author" id="author" type="text" value="Жак-Ив Кусто" placeholder="Имя" name="author">
+                <input class="popup__input popup__input_description" id="description" type="text" value="Исследователь океана" placeholder="О себе" name="description">
                 <button class="popup__button" type="submit">Сохранить</button>
             </form>
         </section>
