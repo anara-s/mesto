@@ -21,61 +21,45 @@
                 <button type="button" class="profile__add"></button>
             </section>
             <section class="elements page__elements">
-                <article class="elements__card">
-                    <img src="images/karach-cherk.png" alt="Историческое здание" class="elements__image">
-                    <div class="elements__content">
-                        <h2 class="elements__title">Карачаевск</h2>
-                        <button type="button" class="elements__like"></button>
-                    </div>
-                </article>
-                <article class="elements__card">
-                    <img src="images/elbrus.png" alt="Гора на горизонте" class="elements__image">                    
-                    <div class="elements__content">
-                        <h2 class="elements__title">Гора Эльбрус</h2>
-                        <button type="button" class="elements__like"></button>
-                    </div>
-                </article>
-                <article class="elements__card">
-                    <img src="images/dombai.png" alt="Вершина горы" class="elements__image">                    
-                    <div class="elements__content">
-                        <h2 class="elements__title">Домбай</h2>
-                        <button type="button" class="elements__like"></button>
-                    </div>
-                </article>
-                <article class="elements__card">
-                    <img src="images/elbrus.png" alt="Гора на горизонте" class="elements__image">                    
-                    <div class="elements__content">
-                        <h2 class="elements__title">Гора Эльбрус</h2>
-                        <button type="button" class="elements__like"></button>
-                    </div>
-                </article>
-                <article class="elements__card">
-                    <img src="images/dombai.png" alt="Вершина горы" class="elements__image">                    
-                    <div class="elements__content">
-                        <h2 class="elements__title">Домбай</h2>
-                        <button type="button" class="elements__like"></button>
-                    </div>
-                </article>
-                <article class="elements__card">
-                    <img src="images/karach-cherk.png" alt="Историческое здание" class="elements__image">                    
-                    <div class="elements__content">
-                        <h2 class="elements__title">Карачаево-Черкессия</h2>
-                        <button type="button" class="elements__like"></button>
-                    </div>
-                </article>
+                <template class="elements__template">
+                    <article class="elements__card">
+                        <img src="#" alt="" class="elements__image">
+                        <button type="button" class="elements__trash"></button>
+                        <div class="elements__content">
+                            <h2 class="elements__title"></h2>
+                            <button type="button" class="elements__like"></button>
+                        </div>
+                    </article>
+                </template>
             </section>
         </main>
         <footer class="footer page__footer">
             <p class="footer__copyright">© 2020 Mesto Russia</p>
         </footer>
-        <section class="popup">
-            <form class="popup__container" name="edit-profile">
+        <section class="popup popup_type_profile">
+            <form class="popup__container popup__container_type_profile" name="edit-profile">
                 <button type="button" class="popup__close"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <input class="popup__input popup__input_content_author" id="author" type="text" value="Жак-Ив Кусто" placeholder="Имя" name="author">
                 <input class="popup__input popup__input_content_description" id="description" type="text" value="Исследователь океана" placeholder="О себе" name="description">
                 <button class="popup__button" type="submit">Сохранить</button>
             </form>
+        </section>
+        <section class="popup popup_type_card">
+            <form class="popup__container popup__container_type_card" name="edit-card">
+                <button type="button" class="popup__close"></button>
+                <h2 class="popup__title">Новое место</h2>
+                <input class="popup__input popup__input_content_place" id="place" type="text" value="" placeholder="Название" name="place">
+                <input class="popup__input popup__input_content_limk" id="link" type="text" value="" placeholder="Ссылка на картинку" name="link">
+                <button class="popup__button" type="submit">Создать</button>
+            </form>
+        </section>
+        <section class="popup popup_type_image">
+            <div class="popup__place">
+                <button type="button" class="popup__close"></button>
+                <img src="#" alt="Изображение места" class="popup__image"> 
+                <p class="popup__text"></p>
+            </div>
         </section>
         <script src="scripts/index.js"></script>
     </body>
