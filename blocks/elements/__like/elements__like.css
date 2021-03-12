@@ -13,7 +13,3 @@
 .elements__like:hover {
     opacity: 0.5;
 }
-
-/* .elements__like:focus {
-    background-image: url(../../../images/like_active.svg);    
-} */

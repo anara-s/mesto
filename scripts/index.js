@@ -58,43 +58,8 @@ const textImage = popupImage.querySelector('.popup__text');
 
 // Переключение класса модального окна
 function togglePopup(popup) {
-    popup.classList.toggle('popup_opened');
+  popup.classList.toggle('popup_opened');
 }
-
-//Слушатель открытия окна редактирования профиля
-openButtonProfile.addEventListener('click', () => {
-    nameInput.value = author.textContent;
-    jobInput.value = description.textContent;
-    togglePopup(popupProfile);
-});
-
-//Слушатель закрытия окна редактирования профиля
-closeButtonProfile.addEventListener('click', () => {
-  togglePopup(popupProfile);
-});
-
-//Слушатель открытия окна добавления карточки
-openButtonCard.addEventListener('click', () => {
-  titleInput.value = "";
-  imageInput.value = "";
-  togglePopup(popupCard);
-});
-
-//Слушатель закрытия окна добавления карточки
-closeButtonCard.addEventListener('click', () => {
-  togglePopup(popupCard);
-});
-
-//Слушатель закрытия окна с картинкой
-closeButtonImage.addEventListener('click', () => {
-  togglePopup(popupImage);
-});
-
-// Слушатель кнопки сохранения профиля
-formElementProfile.addEventListener('submit', handleProfileSubmit);
-
-// Слушатель кнопки добавления новой карточки
-formElementCard.addEventListener('submit', addNewCard);
 
 // Редактирование профиля
 function handleProfileSubmit (evt) {
@@ -116,10 +81,12 @@ function listenButtons(card) {
 //Создание карточки
 function createCard(title, image) {
   const htmlElement = cardTemplate.cloneNode(true);
+  const cardText = htmlElement.querySelector(".elements__title")
+  const cardImage = htmlElement.querySelector(".elements__image")
 
-  htmlElement.querySelector(".elements__title").textContent = title;
-  htmlElement.querySelector(".elements__image").src = image;
-  htmlElement.querySelector(".elements__image").alt = title;
+  cardText.textContent = title;
+  cardImage.src = image;
+  cardImage.alt = title;
 
   listenButtons(htmlElement);
 
@@ -140,36 +107,17 @@ function addNewCard (evt) {
   const card = createCard(cardTitle, cardImage);
 
   renderCard(card);
-
   togglePopup(popupCard);
 };
 
-// Добавление исходных карточек
-initialCards.forEach(function (element) {
-  
-  const cardTitle = element.name;
-  const cardImage = element.link;
-  const card = createCard(cardTitle, cardImage);
-
-  renderCard(card);
-
-  togglePopup(popupCard);
-});
-
 //Удаление карточек
 function deleteCard (evt) {
-  const target = evt.target;
-  const currentCard = target.closest('.elements__card');
-
-  currentCard.remove();
+  evt.target.closest('.elements__card').remove();
 };
 
 //Лайк карточек
 function likeCard (evt) {
-  const target = evt.target;
-  const currentLike = target.closest('.elements__like');
-
-  currentLike.style.backgroundImage = 'url(images/like_active.svg)';
+  evt.target.closest('.elements__like').classList.toggle('elements__like_active');
 };
 
 //Открытие окна с картинкой
@@ -185,3 +133,49 @@ function openImage (evt) {
 
   togglePopup (popupImage);
 };
+
+
+//Слушатель открытия окна редактирования профиля
+openButtonProfile.addEventListener('click', () => {
+  nameInput.value = author.textContent;
+  jobInput.value = description.textContent;
+  togglePopup(popupProfile);
+});
+
+//Слушатель закрытия окна редактирования профиля
+closeButtonProfile.addEventListener('click', () => {
+  togglePopup(popupProfile);
+});
+
+//Слушатель открытия окна добавления карточки
+openButtonCard.addEventListener('click', () => {
+  formElementCard.reset();
+  togglePopup(popupCard);
+});
+
+//Слушатель закрытия окна добавления карточки
+closeButtonCard.addEventListener('click', () => {
+  togglePopup(popupCard);
+});
+
+//Слушатель закрытия окна с картинкой
+closeButtonImage.addEventListener('click', () => {
+  togglePopup(popupImage);
+});
+
+// Слушатель кнопки сохранения профиля
+formElementProfile.addEventListener('submit', handleProfileSubmit);
+
+// Слушатель кнопки добавления новой карточки
+formElementCard.addEventListener('submit', addNewCard);
+
+
+
+// Добавление исходных карточек
+initialCards.forEach(function (element) {
+  const card = createCard(element.name, element.link);
+
+  renderCard(card);
+  togglePopup(popupCard);
+});
+
