@@ -40,8 +40,10 @@
             <form class="popup__container popup__container_type_profile" name="edit-profile">
                 <button type="button" class="popup__close"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <input class="popup__input popup__input_content_author" id="author" type="text" value="Жак-Ив Кусто" placeholder="Имя" name="author">
-                <input class="popup__input popup__input_content_description" id="description" type="text" value="Исследователь океана" placeholder="О себе" name="description">
+                <input class="popup__input popup__input_content_author" id="author" type="text" value="Жак-Ив Кусто" placeholder="Имя" name="author" required minlength="2" maxlength="40">
+                <span id="author-error" class="error"></span>
+                <input class="popup__input popup__input_content_description" id="description" type="text" value="Исследователь океана" placeholder="О себе" name="description" required minlength="2" maxlength="200">
+                <span id="description-error" class="error"></span>
                 <button class="popup__button" type="submit">Сохранить</button>
             </form>
         </section>
@@ -49,8 +51,10 @@
             <form class="popup__container popup__container_type_card" name="edit-card">
                 <button type="button" class="popup__close"></button>
                 <h2 class="popup__title">Новое место</h2>
-                <input class="popup__input popup__input_content_place" id="place" type="text" value="" placeholder="Название" name="place">
-                <input class="popup__input popup__input_content_limk" id="link" type="url" required placeholder="Ссылка на картинку" name="link">
+                <input class="popup__input popup__input_content_place" id="place" type="text" value="" placeholder="Название" name="place" required minlength="2" maxlength="30">
+                <span id="place-error" class="error"></span>
+                <input class="popup__input popup__input_content_limk" id="link" type="url" required placeholder="Ссылка на картинку" name="link" required>
+                <span id="link-error" class="error"></span>
                 <button class="popup__button" type="submit">Создать</button>
             </form>
         </section>
@@ -62,5 +66,6 @@
             </div>
         </section>
         <script src="scripts/index.js"></script>
+        <script src="scripts/validate.js"></script>
     </body>
 </html>

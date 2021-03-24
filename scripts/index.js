@@ -132,35 +132,82 @@ function openImage (evt) {
   textImage.textContent = currentPlace;
 
   togglePopup (popupImage);
+  document.addEventListener('keydown', closePopupsEsc);
 };
 
+//Закрытие окна при нажатии Esc
+function closePopupsEsc (evt) {
+  if (evt.key === 'Escape') {
+    document.querySelector('.popup_opened').classList.remove('popup_opened');
+  };
+  document.removeEventListener('keydown', closePopupsEsc);
+};
+
+//Очистка ошибок в формах
+function cleaningErrors (form) {
+  const errorInput = form.querySelectorAll('.popup__input_error');
+  const errorActive = form.querySelectorAll('.error_active');
+  errorInput.forEach((element) => element.classList.remove('popup__input_error'));
+  errorActive.forEach((element) => element.classList.remove('error_active'));
+};
 
 //Слушатель открытия окна редактирования профиля
 openButtonProfile.addEventListener('click', () => {
   nameInput.value = author.textContent;
   jobInput.value = description.textContent;
+  cleaningErrors(formElementProfile);
   togglePopup(popupProfile);
+  document.addEventListener('keydown', closePopupsEsc);  
 });
 
 //Слушатель закрытия окна редактирования профиля
 closeButtonProfile.addEventListener('click', () => {
   togglePopup(popupProfile);
+  document.removeEventListener('keydown', closePopupsEsc);  
+});
+
+//Слушатель закрытия окна редактирования профиля - оверлей
+popupProfile.addEventListener('click', (evt) => {
+  if (evt.target === evt.currentTarget) {
+    togglePopup(popupProfile);
+    document.removeEventListener('keydown', closePopupsEsc);
+  };
 });
 
 //Слушатель открытия окна добавления карточки
 openButtonCard.addEventListener('click', () => {
   formElementCard.reset();
+  cleaningErrors(formElementCard);
   togglePopup(popupCard);
+  document.addEventListener('keydown', closePopupsEsc);
 });
 
 //Слушатель закрытия окна добавления карточки
-closeButtonCard.addEventListener('click', () => {
+closeButtonCard.addEventListener('click', () => {  
   togglePopup(popupCard);
+  document.removeEventListener('keydown', closePopupsEsc);
+});
+
+//Слушатель закрытия окна добавления карточки - оверлей
+popupCard.addEventListener('click', (evt) => {
+  if (evt.target === evt.currentTarget) {
+    togglePopup(popupCard);
+    document.removeEventListener('keydown', closePopupsEsc);
+  };  
 });
 
 //Слушатель закрытия окна с картинкой
 closeButtonImage.addEventListener('click', () => {
   togglePopup(popupImage);
+  document.removeEventListener('keydown', closePopupsEsc);
+});
+
+//Слушатель закрытия окна с картинкой - оверлей
+popupImage.addEventListener('click', (evt) => {
+  if (evt.target === evt.currentTarget) {
+    togglePopup(popupImage);
+    document.removeEventListener('keydown', closePopupsEsc);
+  };  
 });
 
 // Слушатель кнопки сохранения профиля
