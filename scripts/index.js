@@ -26,6 +26,8 @@ const initialCards = [
   }
 ]; 
 
+const popups = document.querySelectorAll('.popup')
+
 //Профиль
 const popupProfile = document.querySelector('.popup_type_profile');
 const closeButtonProfile = popupProfile.querySelector('.popup__close');
@@ -59,8 +61,13 @@ const textImage = popupImage.querySelector('.popup__text');
 // Переключение класса модального окна
 function togglePopup(popup) {
   popup.classList.toggle('popup_opened');
-}
-
+  if (popup.classList.contains('popup_opened')) {
+    document.addEventListener('keydown', closePopupsEsc);
+  } else {
+    document.removeEventListener('keydown', closePopupsEsc); 
+  };
+};
+  
 // Редактирование профиля
 function handleProfileSubmit (evt) {
   evt.preventDefault();
@@ -131,16 +138,14 @@ function openImage (evt) {
   bigImage.alt = currentPlace;
   textImage.textContent = currentPlace;
 
-  togglePopup (popupImage);
-  document.addEventListener('keydown', closePopupsEsc);
+  togglePopup (popupImage);  
 };
 
 //Закрытие окна при нажатии Esc
 function closePopupsEsc (evt) {
   if (evt.key === 'Escape') {
-    document.querySelector('.popup_opened').classList.remove('popup_opened');
-  };
-  document.removeEventListener('keydown', closePopupsEsc);
+    togglePopup(document.querySelector('.popup_opened'))    
+  };  
 };
 
 //Очистка ошибок в формах
@@ -156,58 +161,14 @@ openButtonProfile.addEventListener('click', () => {
   nameInput.value = author.textContent;
   jobInput.value = description.textContent;
   cleaningErrors(formElementProfile);
-  togglePopup(popupProfile);
-  document.addEventListener('keydown', closePopupsEsc);  
-});
-
-//Слушатель закрытия окна редактирования профиля
-closeButtonProfile.addEventListener('click', () => {
-  togglePopup(popupProfile);
-  document.removeEventListener('keydown', closePopupsEsc);  
-});
-
-//Слушатель закрытия окна редактирования профиля - оверлей
-popupProfile.addEventListener('click', (evt) => {
-  if (evt.target === evt.currentTarget) {
-    togglePopup(popupProfile);
-    document.removeEventListener('keydown', closePopupsEsc);
-  };
+  togglePopup(popupProfile);  
 });
 
 //Слушатель открытия окна добавления карточки
 openButtonCard.addEventListener('click', () => {
   formElementCard.reset();
   cleaningErrors(formElementCard);
-  togglePopup(popupCard);
-  document.addEventListener('keydown', closePopupsEsc);
-});
-
-//Слушатель закрытия окна добавления карточки
-closeButtonCard.addEventListener('click', () => {  
-  togglePopup(popupCard);
-  document.removeEventListener('keydown', closePopupsEsc);
-});
-
-//Слушатель закрытия окна добавления карточки - оверлей
-popupCard.addEventListener('click', (evt) => {
-  if (evt.target === evt.currentTarget) {
-    togglePopup(popupCard);
-    document.removeEventListener('keydown', closePopupsEsc);
-  };  
-});
-
-//Слушатель закрытия окна с картинкой
-closeButtonImage.addEventListener('click', () => {
-  togglePopup(popupImage);
-  document.removeEventListener('keydown', closePopupsEsc);
-});
-
-//Слушатель закрытия окна с картинкой - оверлей
-popupImage.addEventListener('click', (evt) => {
-  if (evt.target === evt.currentTarget) {
-    togglePopup(popupImage);
-    document.removeEventListener('keydown', closePopupsEsc);
-  };  
+  togglePopup(popupCard);  
 });
 
 // Слушатель кнопки сохранения профиля
@@ -216,13 +177,22 @@ formElementProfile.addEventListener('submit', handleProfileSubmit);
 // Слушатель кнопки добавления новой карточки
 formElementCard.addEventListener('submit', addNewCard);
 
-
+// Закрытие окон
+popups.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+      if (evt.target.classList.contains('popup_opened')) {
+        togglePopup(popup);
+      };
+      if (evt.target.classList.contains('popup__close')) {
+        togglePopup(popup);
+      };
+  });
+});
 
 // Добавление исходных карточек
 initialCards.forEach(function (element) {
   const card = createCard(element.name, element.link);
 
-  renderCard(card);
-  togglePopup(popupCard);
+  renderCard(card);  
 });
 
