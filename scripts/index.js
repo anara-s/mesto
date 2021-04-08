@@ -1,3 +1,7 @@
+import { Card } from './Card.js' 
+import { FormValidator } from './FormValidator.js' 
+
+
 // Исходные карточки
 const initialCards = [
   {
@@ -26,11 +30,18 @@ const initialCards = [
   }
 ]; 
 
+const enableValid = {
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',    
+  inactiveButtonClass: 'popup__button_inactive',
+  inputErrorClass: 'popup__input_error',
+  errorClass: 'error_active'
+};
+
 const popups = document.querySelectorAll('.popup')
 
 //Профиль
 const popupProfile = document.querySelector('.popup_type_profile');
-const closeButtonProfile = popupProfile.querySelector('.popup__close');
 const openButtonProfile = document.querySelector('.profile__edit');
 
 const formElementProfile = popupProfile.querySelector('.popup__container_type_profile');
@@ -42,7 +53,6 @@ const description = document.querySelector('.profile__description');
 
 //Карточка
 const popupCard = document.querySelector('.popup_type_card');
-const closeButtonCard = popupCard.querySelector('.popup__close');
 const openButtonCard = document.querySelector('.profile__add');
 
 const formElementCard = popupCard.querySelector('.popup__container_type_card');
@@ -50,13 +60,12 @@ const titleInput = formElementCard.querySelector('.popup__input_content_place');
 const imageInput = formElementCard.querySelector('.popup__input_content_limk');
 
 const elements = document.querySelector(".elements");
-const cardTemplate = elements.querySelector(".elements__template").content;
 
 //Окно с картинкой
 const popupImage = document.querySelector('.popup_type_image');
-const closeButtonImage = popupImage.querySelector('.popup__close');
 const bigImage = popupImage.querySelector('.popup__image');
 const textImage = popupImage.querySelector('.popup__text');
+
 
 // Переключение класса модального окна
 function togglePopup(popup) {
@@ -78,27 +87,6 @@ function handleProfileSubmit (evt) {
   togglePopup (popupProfile);
 };
 
-//Функция слушателей удаления, лайка и картинки
-function listenButtons(card) {
-  card.querySelector(".elements__trash").addEventListener('click', deleteCard);
-  card.querySelector(".elements__like").addEventListener('click', likeCard);
-  card.querySelector(".elements__image").addEventListener('click', openImage);
-};
-
-//Создание карточки
-function createCard(title, image) {
-  const htmlElement = cardTemplate.cloneNode(true);
-  const cardText = htmlElement.querySelector(".elements__title")
-  const cardImage = htmlElement.querySelector(".elements__image")
-
-  cardText.textContent = title;
-  cardImage.src = image;
-  cardImage.alt = title;
-
-  listenButtons(htmlElement);
-
-  return htmlElement;
-};
 
 //Отрисовка карточки
 function renderCard(card) {
@@ -109,22 +97,11 @@ function renderCard(card) {
 function addNewCard (evt) {
   evt.preventDefault();
 
-  const cardTitle = titleInput.value;
-  const cardImage = imageInput.value;
-  const card = createCard(cardTitle, cardImage);
+  const card = new Card(titleInput.value, imageInput.value, openImage);
+  const cardElement = card.generateCard();
 
-  renderCard(card);
+  renderCard(cardElement); 
   togglePopup(popupCard);
-};
-
-//Удаление карточек
-function deleteCard (evt) {
-  evt.target.closest('.elements__card').remove();
-};
-
-//Лайк карточек
-function likeCard (evt) {
-  evt.target.closest('.elements__like').classList.toggle('elements__like_active');
 };
 
 //Открытие окна с картинкой
@@ -191,8 +168,17 @@ popups.forEach((popup) => {
 
 // Добавление исходных карточек
 initialCards.forEach(function (element) {
-  const card = createCard(element.name, element.link);
+  const card = new Card(element.name, element.link, openImage);
+  const cardElement = card.generateCard();
 
-  renderCard(card);  
+  renderCard(cardElement);
 });
 
+
+//Классы форм валидации
+const profileValidation = new FormValidator(enableValid, formElementProfile);
+const cardValidation = new FormValidator(enableValid, formElementCard);
+
+//Включение валидации форм
+profileValidation.enableValidation();
+cardValidation.enableValidation();
