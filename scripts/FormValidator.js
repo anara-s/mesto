@@ -6,26 +6,29 @@ export class FormValidator {
 		this._inactiveButtonClass = object.inactiveButtonClass;
 		this._inputErrorClass = object.inputErrorClass;
 		this._errorClass = object.errorClass
+		this._inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
+  		this._buttonElement = this._form.querySelector(this._submitButtonSelector);
 	}
 
 	// Проверка на пустые поля
-	_allInputsEmpty = (inputList) => {
-		return !inputList.some(inputElement => inputElement.value.length > 0);
+	_allInputsEmpty = () => {
+		return !this._inputList.some(inputElement => inputElement.value.length > 0);
     };
 
 	// Проверка наличия не валидного поля
-    _hasInvalidInput = (inputList) => {
-		return inputList.some(inputElement => !inputElement.validity.valid);
+	_hasInvalidInput = () => {
+		return this._inputList.some(inputElement => !inputElement.validity.valid);
     };
 
-	// Переключение кнопки
-	_toggleButtonState = (inputList, buttonElement) => {
-		if (this._hasInvalidInput(inputList) || this._allInputsEmpty(inputList)) {
-			buttonElement.classList.add(this._inactiveButtonClass);
-			buttonElement.setAttribute('disabled', true);
+
+	// Переключение кнопки	
+	_toggleButtonState = () => {
+		if (this._hasInvalidInput() || this._allInputsEmpty()) {
+			this._buttonElement.classList.add(this._inactiveButtonClass);
+			this._buttonElement.setAttribute('disabled', true);
 		} else {
-			buttonElement.classList.remove(this._inactiveButtonClass);
-			buttonElement.removeAttribute('disabled');
+			this._buttonElement.classList.remove(this._inactiveButtonClass);
+			this._buttonElement.removeAttribute('disabled');
 		}
     };
 
@@ -44,6 +47,14 @@ export class FormValidator {
 		errorElement.classList.remove(this._errorClass);
   	};
 
+	// Очистка ошибок в формах
+	cleaningErrors() {
+		const errorInput = this._form.querySelectorAll(`.${this._inputErrorClass}`);
+		const errorActive = this._form.querySelectorAll(`.${this._errorClass}`);
+		errorInput.forEach((element) => element.classList.remove(this._inputErrorClass));
+		errorActive.forEach((element) => element.classList.remove(this._errorClass));		
+	};
+
 	// Проверка валидности
 	_checkInput = (inputElement) => {
 		if (inputElement.validity.valid) {
@@ -54,20 +65,15 @@ export class FormValidator {
   	};
 
 	// Слушатели
-	_setInputListeners = () => {
-		const inputList = Array.from(
-		this._form.querySelectorAll(this._inputSelector)
-		);
-		const buttonElement = this._form.querySelector(this._submitButtonSelector);
-		
-		inputList.forEach(
+	_setInputListeners = () => {		
+		this._inputList.forEach(
 		inputElement => {
 			inputElement.addEventListener('input', () => {
 				this._checkInput(inputElement);
-				this._toggleButtonState(inputList, buttonElement);
+				this._toggleButtonState();
 			});
 			
-			this._toggleButtonState(inputList, buttonElement);
+			this._toggleButtonState();
 		});
   	};
 
@@ -79,5 +85,5 @@ export class FormValidator {
 				this._setInputListeners();
 		
 	};
-	  
+
 }
