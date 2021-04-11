@@ -134,8 +134,7 @@ cardValidation.enableValidation();
 openButtonProfile.addEventListener('click', () => {
   nameInput.value = author.textContent;
   jobInput.value = description.textContent;
-  profileValidation._buttonElement.classList.add('popup__button_inactive');
-  profileValidation._buttonElement.setAttribute('disabled', true);
+  profileValidation.disableSubmitButton();
   profileValidation.cleaningErrors();
   OpenPopup(popupProfile);
 });
@@ -143,10 +142,8 @@ openButtonProfile.addEventListener('click', () => {
 //Слушатель открытия окна добавления карточки
 openButtonCard.addEventListener('click', () => {
   formElementCard.reset();
-  cardValidation._buttonElement.classList.add('popup__button_inactive');
-  cardValidation._buttonElement.setAttribute('disabled', true);
+  cardValidation.disableSubmitButton();
   cardValidation.cleaningErrors();
-  console.log(cardValidation);
   OpenPopup(popupCard);
 });
 

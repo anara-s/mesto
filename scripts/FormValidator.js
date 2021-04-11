@@ -20,12 +20,15 @@ export class FormValidator {
 		return this._inputList.some(inputElement => !inputElement.validity.valid);
     };
 
+	disableSubmitButton = () => {
+		this._buttonElement.classList.add(this._inactiveButtonClass);
+		this._buttonElement.setAttribute('disabled', true);
+	  }
 
 	// Переключение кнопки	
-	_toggleButtonState = () => {
+	_toggleButtonState = () => {	
 		if (this._hasInvalidInput() || this._allInputsEmpty()) {
-			this._buttonElement.classList.add(this._inactiveButtonClass);
-			this._buttonElement.setAttribute('disabled', true);
+			this.disableSubmitButton();
 		} else {
 			this._buttonElement.classList.remove(this._inactiveButtonClass);
 			this._buttonElement.removeAttribute('disabled');
@@ -48,11 +51,8 @@ export class FormValidator {
   	};
 
 	// Очистка ошибок в формах
-	cleaningErrors() {
-		const errorInput = this._form.querySelectorAll(`.${this._inputErrorClass}`);
-		const errorActive = this._form.querySelectorAll(`.${this._errorClass}`);
-		errorInput.forEach((element) => element.classList.remove(this._inputErrorClass));
-		errorActive.forEach((element) => element.classList.remove(this._errorClass));		
+	cleaningErrors() {			
+		this._inputList.forEach(input => this._hideInputError(input));		
 	};
 
 	// Проверка валидности
