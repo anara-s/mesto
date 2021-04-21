@@ -3,8 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Mesto</title>
-        <link rel="stylesheet" href="pages/index.css">
+        <title>Mesto</title>        
     </head>
     <body class="page">
         <header class="header page__header">
@@ -12,7 +11,7 @@
         </header>
         <main>
             <section class="profile page__profile">
-                <img src="images/avatar.jpg" alt="Изображение автора" class="profile__image">
+                <img src="<%=require('./images/avatar.jpg')%>" alt="Изображение автора" class="profile__image">
                 <div class="profile__content">
                     <h1 class="profile__author">Жак-Ив Кусто</h1>
                     <button type="button" class="profile__edit"></button>
@@ -64,9 +63,6 @@
                 <img src="#" alt="Изображение места" class="popup__image"> 
                 <p class="popup__text"></p>
             </div>
-        </section>
-        <script type="module" src="scripts/Card.js"></script>
-        <script type="module" src="scripts/FormValidator.js"></script>
-        <script type="module" src="scripts/index.js"></script>
+        </section>        
     </body>
 </html>

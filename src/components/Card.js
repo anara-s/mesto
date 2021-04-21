@@ -1,9 +1,9 @@
-export class Card {
-	constructor(text, image, openImage) {
+export default class Card {
+	constructor(text, image, handleCardClick) {
 		this._text = text;
 		this._image = image;
-		this._openImage = openImage;
-	}
+		this._handleCardClick = handleCardClick;
+	};
 
     //Получение Template
     _getTemplate() {
@@ -13,7 +13,7 @@ export class Card {
           .cloneNode(true);
     
         return cardElement;
-    }
+    };
 
     //Удаление карточек
     _deleteCard (evt) {
@@ -29,7 +29,7 @@ export class Card {
     _setEventListeners() {
         this._element.querySelector(".elements__trash").addEventListener('click', this._deleteCard);
         this._element.querySelector(".elements__like").addEventListener('click', this._likeCard);
-        this._element.querySelector(".elements__image").addEventListener('click', () => this._openImage(this._text, this._image));
+        this._element.querySelector(".elements__image").addEventListener('click', () => this._handleCardClick(this._text, this._image));
     };
 
     //Генерация карточки
@@ -43,7 +43,7 @@ export class Card {
         this._setEventListeners();
     
         return this._element;
-    }
+    };
 
 
-}
+};
