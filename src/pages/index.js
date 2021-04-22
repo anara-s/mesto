@@ -43,8 +43,7 @@ const profileInfo = new UserInfo ({
 //Окно редактирования профиля
 const popupProfile = new PopupWithForm (popupProfileSelector,
   (formData) => {
-    profileInfo.setUserInfo(formData.author, formData.description) 
-    popupProfile.close();
+    profileInfo.setUserInfo(formData.author, formData.description);
 });
 
 //Слушатели окна редактирования профиля
@@ -52,7 +51,7 @@ popupProfile.setEventListeners();
 
 //Слушатель открытия окна редактирования профиля
 openButtonProfile.addEventListener('click', () => {
-  const userData = profileInfo.getUserInfo()
+  const userData = profileInfo.getUserInfo();
   nameInput.value = userData.author;
   jobInput.value = userData.description;
   profileValidation.disableSubmitButton();
@@ -90,7 +89,7 @@ const popupCard = new PopupWithForm (popupCardSelector,
     const cardElement = createCard(formData.place, formData.link, handleCardClick);
 
     newCards.addItem(cardElement);
-    popupCard.close();
+    // popupCard.close();
 });
 
 //Слушатели окна создания карточки

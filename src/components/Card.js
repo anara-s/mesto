@@ -34,11 +34,13 @@ export default class Card {
 
     //Генерация карточки
     generateCard() {
-        this._element = this._getTemplate();        
-        this._element.querySelector('.elements__title').textContent = this._text;
-        this._element.querySelector('.elements__image').src = this._image;
-        this._element.querySelector('.elements__image').alt = this._text;
+        this._element = this._getTemplate();
+        this._picture = this._element.querySelector('.elements__image');
+        this._title = this._element.querySelector('.elements__title');
 
+        this._title.textContent = this._text;
+        this._picture.src = this._image;
+        this._picture.alt = this._text;
     
         this._setEventListeners();
     
