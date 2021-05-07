@@ -11,11 +11,12 @@
         </header>
         <main>
             <section class="profile page__profile">
-                <img src="<%=require('./images/avatar.jpg')%>" alt="Изображение автора" class="profile__image">
+                <img src="" alt="Изображение автора" class="profile__image">
+                <button type="button" class="profile__edit-avatar"></button>
                 <div class="profile__content">
-                    <h1 class="profile__author">Жак-Ив Кусто</h1>
+                    <h1 class="profile__author"></h1>
                     <button type="button" class="profile__edit"></button>
-                    <p class="profile__description">Исследователь океана</p>                    
+                    <p class="profile__description"></p>
                 </div>
                 <button type="button" class="profile__add"></button>
             </section>
@@ -26,7 +27,10 @@
                         <button type="button" class="elements__trash"></button>
                         <div class="elements__content">
                             <h2 class="elements__title"></h2>
-                            <button type="button" class="elements__like"></button>
+                            <div>
+                                <button type="button" class="elements__like"></button>
+                                <p class=elements__count>0</p>
+                            </div>                            
                         </div>
                     </article>
                 </template>
@@ -39,9 +43,9 @@
             <form class="popup__container popup__container_type_profile" name="edit-profile">
                 <button type="button" class="popup__close"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <input class="popup__input popup__input_content_author" id="author" type="text" value="Жак-Ив Кусто" placeholder="Имя" name="author" required minlength="2" maxlength="40">
+                <input class="popup__input popup__input_content_author" id="author" type="text" value="" placeholder="Имя" name="author" required minlength="2" maxlength="40">
                 <span id="author-error" class="error"></span>
-                <input class="popup__input popup__input_content_description" id="description" type="text" value="Исследователь океана" placeholder="О себе" name="description" required minlength="2" maxlength="200">
+                <input class="popup__input popup__input_content_description" id="description" type="text" value="" placeholder="О себе" name="description" required minlength="2" maxlength="200">
                 <span id="description-error" class="error"></span>
                 <button class="popup__button" type="submit">Сохранить</button>
             </form>
@@ -63,6 +67,22 @@
                 <img src="#" alt="Изображение места" class="popup__image"> 
                 <p class="popup__text"></p>
             </div>
-        </section>        
+        </section>
+        <section class="popup popup_type_submit">
+            <form class="popup__container popup__container_type_submit" name="delete-submit">
+                <button type="button" class="popup__close"></button>
+                <h2 class="popup__title">Вы уверены?</h2>
+                <button class="popup__button" type="submit">Да</button>
+            </form>
+        </section>
+        <section class="popup popup_type_avatar">
+            <form class="popup__container popup__container_type_avatar" name="edit-avatar">
+                <button type="button" class="popup__close"></button>
+                <h2 class="popup__title">Обновить аватар</h2>
+                <input class="popup__input popup__input_content_avatar" id="avatar" type="url" placeholder="Ссылка на аватар" name="avatar" required>
+                <span id="avatar-error" class="error"></span>
+                <button class="popup__button" type="submit">Сохранить</button>
+            </form>
+        </section>
     </body>
 </html>

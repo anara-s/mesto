@@ -10,6 +10,7 @@
     outline: inherit;
     transition: opacity 1s ease;
     cursor: pointer;
+    display: none;
 }
 
 .elements__trash:hover {

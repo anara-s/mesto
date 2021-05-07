@@ -1,5 +1,6 @@
 .elements__content {
     display: flex;
-    justify-content: center;
-    padding: 25px 15px 30px 20px;
+    justify-content: space-between;
+    padding: 22px 15px 22px 20px;
+    align-items: center;
 }

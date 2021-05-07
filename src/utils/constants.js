@@ -1,31 +1,3 @@
-// Исходные карточки
-export const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ]; 
-
 export const enableValid = {
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__button',    
@@ -42,8 +14,14 @@ export const formElementProfile = document.querySelector('.popup__container_type
 export const nameInput = formElementProfile.querySelector('.popup__input_content_author');
 export const jobInput = formElementProfile.querySelector('.popup__input_content_description');
 
+export const formElementAvatar = document.querySelector('.popup__container_type_avatar');
+export const popupAvatarSelector = '.popup_type_avatar';
+export const openButtonAvatar = document.querySelector('.profile__edit-avatar');
+
 export const author = '.profile__author';
 export const description = '.profile__description';
+
+export const avatar = document.querySelector('.profile__image');
 
 //Карточка
 export const popupCardSelector = '.popup_type_card';
@@ -54,3 +32,5 @@ export const formElementCard = document.querySelector('.popup__container_type_ca
 export const elementsSelector = '.elements';
 
 export const popupImageSelector = '.popup_type_image';
+
+export const popupSubmitSelector = '.popup_type_submit';

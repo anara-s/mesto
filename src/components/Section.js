@@ -1,17 +1,18 @@
 export default class Section {
-    constructor({ items, renderer }, containerSelector) {
-      this._renderedItems = items;
-      this._renderer = renderer;
+    constructor(containerSelector) {
       this._container = document.querySelector(containerSelector);
     }
-  
+
+    //Добавление карточки
     addItem(element) {
       this._container.prepend(element);
     }
   
-    renderItems() {  
-      this._renderedItems.forEach(item => {
-        this._renderer(item);
+    //Рендеринг карточек
+    renderItems({ items, renderer }) {  
+      
+      items.forEach(item => {
+        renderer(item);
       });
     }
   }

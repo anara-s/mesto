@@ -7,7 +7,7 @@ export default class PopupWithImage extends Popup {
       this._title = this._popup.querySelector('.popup__text');
     };
   
-  
+// Открытие окна с картинкой  
     open(text, image) {
       this._picture.src = image;
       this._picture.alt = text;
