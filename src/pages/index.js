@@ -147,6 +147,13 @@ function createCard(templateCard, text, image, element, userId, openImage, api, 
   return card.generateCard();  
 };
 
+//Класс секшн
+const newCards = new Section(
+   (dataCards) => {    
+    const cardElement = createCard(templateCard, dataCards.name, dataCards.link, dataCards, userId, handleCardClick, api, popupSubmit);
+    newCards.addItem(cardElement);
+  },
+elementsSelector)
 
 //Окно создания карточки
 const popupCard = new PopupWithForm (popupCardSelector,
@@ -154,7 +161,7 @@ const popupCard = new PopupWithForm (popupCardSelector,
     api.setNewCard({name: formData.place, link: formData.link})
     .then((res) => {
       const cardElement = createCard(templateCard, formData.place, formData.link, res, userId, handleCardClick, api, popupSubmit);
-      document.querySelector(elementsSelector).prepend(cardElement);
+      newCards.addItem(cardElement);
       popupCard.close()
     })
     .catch((err) => {
@@ -176,14 +183,8 @@ api.getAllNeededData()
     profileInfo.setUserInfo(dataProfile.name, dataProfile.about)
     profileInfo.setAvatarInfo(dataProfile.avatar)
     userId = dataProfile._id
-    const newCards = new Section({
-    items: dataCards.reverse(),
-    renderer: (item) => {    
-      const cardElement = createCard(templateCard, item.name, item.link, item, userId, handleCardClick, api, popupSubmit);
-      newCards.addItem(cardElement);
-    }
-  }, elementsSelector)
-  newCards.renderItems();
+    dataCards.reverse(),
+    newCards.renderItems(dataCards);
   })
   .catch((err) => {
     console.log(err); 
