@@ -1,10 +1,11 @@
 export default class Card {
-	constructor(text, image, likes, cardId, owner, myId, handleCardClick, api, popupSubmit) {
-		this._text = text;
+	constructor(templateCard, text, image, element, myId, handleCardClick, api, popupSubmit) {
+		this._templateCard = templateCard;
+        this._text = text;
 		this._image = image;
-        this._likes = likes;
-        this._cardId = cardId;
-        this._owner = owner;
+        this._likes = element.likes;
+        this._cardId = element._id;
+        this._owner = element.owner;
         this._myId = myId;
 		this._handleCardClick = handleCardClick;
         this._api = api;
@@ -19,8 +20,7 @@ export default class Card {
 
     //Получение Template
     _getTemplate() {
-        const cardElement = document
-          .querySelector('.elements__template')
+        const cardElement = this._templateCard
           .content          
           .cloneNode(true);
     
@@ -32,7 +32,8 @@ export default class Card {
         if (evt.target.classList.contains('elements__like_active')) {
             this._api.deleteLike(this._cardId)
             .then((res) => {
-                this._likeCount.textContent = res.likes.length;   
+                this._likeCount.textContent = res.likes.length; 
+                evt.target.classList.remove('elements__like_active');  
             })
             .catch((err) => {
                 console.log(err); 
@@ -40,13 +41,13 @@ export default class Card {
         } else {
             this._api.putLike(this._cardId)
             .then((res) => {
-                this._likeCount.textContent = res.likes.length;   
+                this._likeCount.textContent = res.likes.length;
+                evt.target.classList.add('elements__like_active');  
             })
             .catch((err) => {
                 console.log(err);
             })
-        }
-        evt.target.classList.toggle('elements__like_active');
+        }        
     };
 
     //Удаление карточки
@@ -65,6 +66,9 @@ export default class Card {
                         .catch((err) => {
                             console.log(err); 
                         })
+                        .finally(() => {
+                            this._popupSubmit.renderLoading(false, 'Да');
+                          });
                 });
             });
         };

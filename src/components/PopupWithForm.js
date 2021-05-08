@@ -6,6 +6,7 @@ export default class PopupWithForm extends Popup {
       this._handleFormSubmit = handleFormSubmit;
       this._form = this._popup.querySelector('.popup__container');
       this._button = this._form.querySelector('.popup__button');
+      this._inputList = this._form.querySelectorAll('.popup__input');
     }
 
 //Показ процесса загрузки данных
@@ -19,9 +20,7 @@ export default class PopupWithForm extends Popup {
     }
   
 //Получение значений полей формы    
-    _getInputValues() {
-      this._inputList = this._form.querySelectorAll('.popup__input');
-      
+    _getInputValues() {      
       this._formValues = {};
       this._inputList.forEach(input => this._formValues[input.name] = input.value);
       
@@ -34,7 +33,6 @@ export default class PopupWithForm extends Popup {
             evt.preventDefault();
             this.renderLoading(true, 'Сохранение...');
             this._handleFormSubmit(this._getInputValues());
-            this.close();
           }
         )
   

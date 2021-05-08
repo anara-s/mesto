@@ -51,7 +51,7 @@ export default class FormValidator {
   	};
 
 	// Очистка ошибок в формах
-	cleaningErrors() {			
+	cleanErrors() {			
 		this._inputList.forEach(input => this._hideInputError(input));		
 	};
 

@@ -1,14 +1,18 @@
 export default class UserInfo {
-    constructor ({authorSelector, descriptionSelector}) {
+    constructor ({authorSelector, descriptionSelector, avatarSelector}) {
         this._authorSelector = authorSelector;
         this._descriptionSelector = descriptionSelector;
+        this._avatarSelector = avatarSelector;
+        this._author = document.querySelector(this._authorSelector);
+        this._description = document.querySelector(this._descriptionSelector);
+        this._avatar = document.querySelector(this._avatarSelector)
     };
 
     //Получение данных профиля
     getUserInfo() {
         this._userInfo = {
-            author: document.querySelector(this._authorSelector).textContent,
-            description: document.querySelector(this._descriptionSelector).textContent
+            author: this._author.textContent,
+            description:  this._description.textContent
         }
 
         return this._userInfo;
@@ -17,9 +21,13 @@ export default class UserInfo {
 
     //Установка данных профиля
     setUserInfo(name, info) {
-        document.querySelector(this._authorSelector).textContent = name;
-        document.querySelector(this._descriptionSelector).textContent = info;
-        
+        this._author.textContent = name;
+        this._description.textContent = info;
+    };
+
+    //Установка данных аватара
+    setAvatarInfo(avatar) {
+        this._avatar.src = avatar;
     };
 }
 

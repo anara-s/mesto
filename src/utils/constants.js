@@ -18,12 +18,12 @@ export const formElementAvatar = document.querySelector('.popup__container_type_
 export const popupAvatarSelector = '.popup_type_avatar';
 export const openButtonAvatar = document.querySelector('.profile__edit-avatar');
 
-export const author = '.profile__author';
-export const description = '.profile__description';
-
-export const avatar = document.querySelector('.profile__image');
+export const authorSelector = '.profile__author';
+export const descriptionSelector = '.profile__description';
+export const avatarSelector = '.profile__image';
 
 //Карточка
+export const templateCard = document.querySelector('.elements__template');
 export const popupCardSelector = '.popup_type_card';
 export const openButtonCard = document.querySelector('.profile__add');
 
